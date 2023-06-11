@@ -6,3 +6,7 @@ export const Container = styled.View`
   align-items: center;
   background-color: ${({ theme }) => theme.palette.gray6};
 `;
+
+export const LoadIndicator = styled.ActivityIndicator.attrs(({ theme }) => ({
+  color: theme.palette.green7,
+}))``;
