@@ -1,11 +1,13 @@
-import { Container, Title } from './styles';
+import { Container } from './styles';
 import { Header } from '@/components/header';
+import { Highlight } from '@/components/highlight';
 
 export default function Groups() {
   return (
     <Container>
       <Header />
-      <Title>Groups</Title>
+
+      <Highlight title="Groups" subtitle="play with your team" />
     </Container>
   );
 }
