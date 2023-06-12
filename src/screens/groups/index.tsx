@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FlatList } from 'react-native';
 
 import { Container } from './styles';
+import { Button } from '@/components/button';
 import { GroupCard } from '@/components/group-card';
 import { Header } from '@/components/header';
 import { Highlight } from '@/components/highlight';
@@ -29,6 +30,8 @@ export default function Groups() {
           />
         }
       />
+
+      <Button label="Create new group" />
     </Container>
   );
 }
