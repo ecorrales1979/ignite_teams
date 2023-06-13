@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1%;
@@ -8,7 +8,9 @@ export const Container = styled.View`
 
 export const Message = styled.Text`
   text-align: center;
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  font-family: ${({ theme }) => theme.fontFamily.regular};
-  color: ${({ theme }) => theme.palette.gray3};
+  ${({ theme }) => css`
+    font-size: ${theme.fontSize.sm};
+    font-family: ${theme.fontFamily.regular};
+    color: ${theme.palette.gray3};
+  `}
 `;
