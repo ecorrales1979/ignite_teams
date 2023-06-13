@@ -14,7 +14,7 @@ export default function NewGroup() {
 
         <Highlight title="New group" subtitle="Create a new group to start adding new participants" />
 
-        <Input />
+        <Input placeholder="Group name" />
 
         <Button label="Create" style={{ marginTop: 20 }} />
       </Content>
