@@ -24,6 +24,7 @@ export default function Groups() {
           <GroupCard title={item} />
         )}
         contentContainerStyle={groups.length === 0 && { flex: 1 }}
+        showsVerticalScrollIndicator={false}
         ListEmptyComponent={
           <ListEmpty
             message="You don't have any group yet. Register your first one now!"
