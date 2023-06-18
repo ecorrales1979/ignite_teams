@@ -1,5 +1,10 @@
-import { Button } from '@/components/button';
+import { useState } from 'react';
+import { FlatList } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+
 import { Container, Form, HeaderList, PlayersNumber } from './styles';
+import { PlayersRouteParams } from '@/@types/navigation';
+import { Button } from '@/components/button';
 import { ButtonIcon } from '@/components/button-icon';
 import { Filter } from '@/components/filter';
 import { Header } from '@/components/header';
@@ -7,18 +12,18 @@ import { Highlight } from '@/components/highlight';
 import { Input } from '@/components/input';
 import { ListEmpty } from '@/components/list-empty';
 import { PlayerCard } from '@/components/player-card';
-import { useState } from 'react';
-import { FlatList } from 'react-native';
 
 export default function Players() {
   const [team, setTeam] = useState('Team A');
   const [players, setPlayers] = useState<string[]>([]);
+  const route = useRoute();
+  const { group } = route.params as PlayersRouteParams;
 
   return (
     <Container>
       <Header showBackButton />
 
-      <Highlight title="Group name" subtitle="Add players to this group" />
+      <Highlight title={group} subtitle="Add players to this group" />
 
       <Form>
         <Input placeholder="Player name" autoCorrect={false} />
