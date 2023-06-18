@@ -1,3 +1,5 @@
+import { useNavigation } from '@react-navigation/native';
+
 import { Container, Content, Icon } from './styles';
 import { Button } from '@/components/button';
 import { Header } from '@/components/header';
@@ -5,6 +7,12 @@ import { Highlight } from '@/components/highlight';
 import { Input } from '@/components/input';
 
 export default function NewGroup() {
+  const navigation = useNavigation()
+
+  const handleCreateGroup = () => {
+    navigation.navigate('players', { group: 'Team A' });
+  }
+
   return (
     <Container>
       <Header showBackButton />
@@ -16,7 +24,7 @@ export default function NewGroup() {
 
         <Input placeholder="Group name" />
 
-        <Button label="Create" style={{ marginTop: 20 }} />
+        <Button label="Create" style={{ marginTop: 20 }} onPress={handleCreateGroup} />
       </Content>
     </Container>
   )
