@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { Container, Content, Icon } from './styles';
@@ -7,6 +8,7 @@ import { Header } from '@/components/header';
 import { Highlight } from '@/components/highlight';
 import { Input } from '@/components/input';
 import { groupCreate } from '@/storage/group/group-create';
+import { AppError } from '@/utils/app-error';
 
 export default function NewGroup() {
   const [group, setGroup] = useState('')
@@ -17,7 +19,12 @@ export default function NewGroup() {
       await groupCreate(group);
       navigation.navigate('players', { group });
     } catch (error) {
-      console.error(error);
+      if (error instanceof AppError) {
+        Alert.alert('New group', error.message)
+      } else {
+        Alert.alert('New group', 'There were an error trying to create the new group');
+        console.error(error);
+      }
     }
   }
 
