@@ -16,8 +16,13 @@ export default function NewGroup() {
 
   const handleCreateGroup = async () => {
     try {
-      await groupCreate(group);
-      navigation.navigate('players', { group });
+      const groupName = group.trim();
+      if (groupName.length === 0) {
+        throw new AppError('You need to provide a name for the new group');
+      }
+
+      await groupCreate(groupName);
+      navigation.navigate('players', { group: groupName });
     } catch (error) {
       if (error instanceof AppError) {
         Alert.alert('New group', error.message)
