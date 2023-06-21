@@ -25,11 +25,11 @@ export default function NewGroup() {
       navigation.navigate('players', { group: groupName });
     } catch (error) {
       if (error instanceof AppError) {
-        Alert.alert('New group', error.message)
-      } else {
-        Alert.alert('New group', 'There was an error trying to create the new group');
-        console.error(error);
+        return Alert.alert('New group', error.message)
       }
+
+      Alert.alert('New group', 'There was an error trying to create the new group');
+      console.error(error);
     }
   }
 
