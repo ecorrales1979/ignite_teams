@@ -27,7 +27,7 @@ export default function NewGroup() {
       if (error instanceof AppError) {
         Alert.alert('New group', error.message)
       } else {
-        Alert.alert('New group', 'There were an error trying to create the new group');
+        Alert.alert('New group', 'There was an error trying to create the new group');
         console.error(error);
       }
     }
