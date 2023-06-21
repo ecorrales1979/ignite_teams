@@ -56,13 +56,13 @@ export default function Players() {
         ]}
         ListEmptyComponent={
           <ListEmpty
-            message="There are no players on this team yet"
+            message="There are no players on this group yet"
           />
         }
       />
 
       <Button
-        label="Delete team"
+        label="Delete group"
         type="secondary"
       />
     </Container>
