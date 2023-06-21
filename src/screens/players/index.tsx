@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FlatList } from 'react-native';
+import { Alert, FlatList } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
 import { Container, Form, HeaderList, PlayersNumber } from './styles';
@@ -12,12 +12,36 @@ import { Highlight } from '@/components/highlight';
 import { Input } from '@/components/input';
 import { ListEmpty } from '@/components/list-empty';
 import { PlayerCard } from '@/components/player-card';
+import { playerAddByGroup } from '@/storage/player/player-add-by-group';
+import { AppError } from '@/utils/app-error';
 
 export default function Players() {
+  const [newPlayer, setNewPlayer] = useState('');
   const [team, setTeam] = useState('Team A');
   const [players, setPlayers] = useState<string[]>([]);
   const route = useRoute();
   const { group } = route.params as PlayersRouteParams;
+
+  const handleAddPlayer = async () => {
+    try {
+      const newPlayerName = newPlayer.trim();
+
+      if (newPlayerName.length === 0) {
+        throw new AppError('Player name must not be empty');
+      }
+
+      await playerAddByGroup({ name: newPlayerName, team }, group);
+    } catch (error) {
+      if (error instanceof AppError) {
+        return Alert.alert('New player', error.message)
+      }
+
+      Alert.alert('New player', 'There was an error trying to create the new player');
+      console.error(error);
+    }
+
+    
+  }
 
   return (
     <Container>
@@ -26,8 +50,13 @@ export default function Players() {
       <Highlight title={group} subtitle="Add players to this group" />
 
       <Form>
-        <Input placeholder="Player name" autoCorrect={false} />
-        <ButtonIcon icon="add" />
+        <Input
+          placeholder="Player name"
+          onChangeText={setNewPlayer}
+          autoCorrect={false}
+        />
+
+        <ButtonIcon icon="add" onPress={handleAddPlayer} />
       </Form>
 
       <HeaderList>
