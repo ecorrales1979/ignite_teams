@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react'
+import { type ReactElement } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 import { BackButton, BackContainer, BackIcon, Container, Logo } from './styles'
@@ -8,7 +8,7 @@ interface Props {
   showBackButton?: boolean
 }
 
-export function Header({ showBackButton = false }: Props): ReactNode {
+export function Header({ showBackButton = false }: Props): ReactElement {
   const navigation = useNavigation()
 
   const handleBack = (): void => {

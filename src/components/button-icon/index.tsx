@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react'
+import { type ReactElement } from 'react'
 import { type TouchableOpacityProps } from 'react-native'
 import { type MaterialIcons } from '@expo/vector-icons'
 
@@ -13,7 +13,7 @@ export function ButtonIcon({
   icon,
   type = 'primary',
   ...rest
-}: Props): ReactNode {
+}: Props): ReactElement {
   return (
     <Container {...rest}>
       <Icon name={icon} type={type} />

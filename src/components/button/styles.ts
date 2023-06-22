@@ -1,4 +1,3 @@
-import { TouchableOpacity } from 'react-native'
 import styled, { css } from 'styled-components/native'
 
 export type ButtonStyleType = 'primary' | 'secondary'
@@ -7,7 +6,7 @@ interface Props {
   type: ButtonStyleType
 }
 
-export const Container = styled(TouchableOpacity)<Props>`
+export const Container = styled.TouchableOpacity<Props>`
   flex: 1;
   justify-content: center;
   align-items: center;

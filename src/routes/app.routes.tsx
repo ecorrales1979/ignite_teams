@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react'
+import { type ReactElement } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import Groups from '@/screens/groups'
@@ -7,7 +7,7 @@ import Players from '@/screens/players'
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
-export function AppRoutes(): ReactNode {
+export function AppRoutes(): ReactElement {
   return (
     <Navigator initialRouteName="groups" screenOptions={{ headerShown: false }}>
       <Screen name="groups" component={Groups} />

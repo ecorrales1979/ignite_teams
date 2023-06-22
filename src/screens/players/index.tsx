@@ -1,5 +1,5 @@
 import { type ReactElement, useEffect, useState, useRef } from 'react'
-import { Alert, FlatList, TextInput } from 'react-native'
+import { Alert, FlatList, type TextInput } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 
 import { Container, Form, HeaderList, PlayersNumber } from './styles'

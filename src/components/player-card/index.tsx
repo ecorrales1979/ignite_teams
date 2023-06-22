@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react'
+import { type ReactElement } from 'react'
 
 import { Container, Icon, PlayerName } from './styles'
 import { ButtonIcon } from '../button-icon'
@@ -8,7 +8,7 @@ interface Props {
   onRemove: () => void
 }
 
-export function PlayerCard({ name, onRemove }: Props): ReactNode {
+export function PlayerCard({ name, onRemove }: Props): ReactElement {
   return (
     <Container>
       <Icon name="person" />

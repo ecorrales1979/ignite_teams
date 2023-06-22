@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react'
+import { type ReactElement } from 'react'
 
 import { Container, Subtitle, Title } from './styles'
 
@@ -7,7 +7,7 @@ interface Props {
   subtitle: string
 }
 
-export function Highlight({ title, subtitle }: Props): ReactNode {
+export function Highlight({ title, subtitle }: Props): ReactElement {
   return (
     <Container>
       <Title>{title}</Title>

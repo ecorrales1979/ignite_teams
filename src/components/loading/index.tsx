@@ -1,8 +1,8 @@
-import { type ReactNode } from 'react'
+import { type ReactElement } from 'react'
 
 import { Container, LoadIndicator } from './styles'
 
-export function Loading(): ReactNode {
+export function Loading(): ReactElement {
   return (
     <Container>
       <LoadIndicator />
