@@ -16,7 +16,8 @@
     "project": "./tsconfig.json"
   },
   "plugins": [
-    "react"
+    "react",
+    "eslint-plugin-import-helpers"
   ],
   "settings": {
     "react": {
@@ -26,6 +27,18 @@
   "rules": {
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-throw-literal": "off",
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+            "module",
+            ["sibling", "index", "parent"],
+            "/^@\//"
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ],
     "react/react-in-jsx-scope": "off"
   }
 }
