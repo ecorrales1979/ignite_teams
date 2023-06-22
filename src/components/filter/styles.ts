@@ -1,13 +1,12 @@
-import { TouchableOpacity } from 'react-native';
-import styled, { css } from 'styled-components/native';
+import styled, { css } from 'styled-components/native'
 
 export interface FilterStyleProps {
-  isActive?: boolean;
+  isActive?: boolean
 }
 
-export const Container = styled(TouchableOpacity)<FilterStyleProps>`
-  ${({ theme, isActive }) =>
-    isActive &&
+export const Container = styled.TouchableOpacity<FilterStyleProps>`
+  ${({ theme, isActive = false }) =>
+    !!isActive &&
     css`
       border: 1px solid ${theme.palette.green7};
     `};
@@ -17,7 +16,7 @@ export const Container = styled(TouchableOpacity)<FilterStyleProps>`
   justify-content: center;
   border-radius: 4px;
   margin-right: 12px;
-`;
+`
 
 export const Title = styled.Text`
   ${({ theme }) => css`
@@ -26,4 +25,4 @@ export const Title = styled.Text`
     color: ${theme.palette.white};
   `};
   text-transform: uppercase;
-`;
+`

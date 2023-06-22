@@ -14,16 +14,16 @@ export default {
     gray4: '#323238',
     gray3: '#7C7C8A',
     gray2: '#C4C4CC',
-    gray1: '#E1E1E6',
+    gray1: '#E1E1E6'
   },
   fontFamily: {
     regular: 'Roboto_400Regular',
-    bold: 'Roboto_700Bold',
+    bold: 'Roboto_700Bold'
   },
   fontSize: {
     sm: '14px',
     md: '16px',
     lg: '18px',
-    xl: '24px',
-  },
-};
+    xl: '24px'
+  }
+}

@@ -1,10 +1,12 @@
-import { Container, Message } from './styles';
+import { type ReactNode } from 'react'
+
+import { Container, Message } from './styles'
 
 interface Props {
-  message: string;
+  message: string
 }
 
-export function ListEmpty({ message }: Props) {
+export function ListEmpty({ message }: Props): ReactNode {
   return (
     <Container>
       <Message>{message}</Message>

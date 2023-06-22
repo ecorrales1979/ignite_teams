@@ -1,15 +1,14 @@
-import { TouchableOpacity } from 'react-native';
-import { MaterialIcons as MIcon } from '@expo/vector-icons';
+import { type ReactNode } from 'react'
 
-import { Container, Icon, PlayerName } from './styles';
-import { ButtonIcon } from '../button-icon';
+import { Container, Icon, PlayerName } from './styles'
+import { ButtonIcon } from '../button-icon'
 
 interface Props {
-  name: string;
-  onRemove: () => void;
+  name: string
+  onRemove: () => void
 }
 
-export function PlayerCard({ name, onRemove }: Props) {
+export function PlayerCard({ name, onRemove }: Props): ReactNode {
   return (
     <Container>
       <Icon name="person" />

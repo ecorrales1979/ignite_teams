@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components/native';
-import { MaterialIcons } from '@expo/vector-icons';
+import styled, { css } from 'styled-components/native'
+import { MaterialIcons } from '@expo/vector-icons'
 
 export const Container = styled.View`
   width: 100%;
@@ -9,7 +9,7 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.palette.gray5};
   border-radius: 6px;
   margin-bottom: 16px;
-`;
+`
 
 export const PlayerName = styled.Text`
   flex: 1;
@@ -18,12 +18,12 @@ export const PlayerName = styled.Text`
     font-family: ${theme.fontFamily.regular};
     color: ${theme.palette.gray2};
   `};
-`;
+`
 
 export const Icon = styled(MaterialIcons).attrs(({ theme }) => ({
   size: 24,
-  color: theme.palette.gray2,
+  color: theme.palette.gray2
 }))`
   margin-left: 16px;
   margin-right: 4px;
-`;
+`

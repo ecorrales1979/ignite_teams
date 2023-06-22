@@ -1,13 +1,14 @@
-import { TouchableOpacityProps } from 'react-native';
+import { type ReactNode } from 'react'
+import { type TouchableOpacityProps } from 'react-native'
 
-import { ButtonStyleType, Container, Label } from './styles';
+import { type ButtonStyleType, Container, Label } from './styles'
 
 interface Props extends TouchableOpacityProps {
-  label: string;
-  type?: ButtonStyleType;
+  label: string
+  type?: ButtonStyleType
 }
 
-export function Button({ label, type = 'primary', ...rest }: Props) {
+export function Button({ label, type = 'primary', ...rest }: Props): ReactNode {
   return (
     <Container type={type} {...rest}>
       <Label>{label}</Label>

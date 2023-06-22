@@ -1,4 +1,4 @@
 export interface PlayerDTO {
-  name: string;
-  team: string;
+  name: string
+  team: string
 }

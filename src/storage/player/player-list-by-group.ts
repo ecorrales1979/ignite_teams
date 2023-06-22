@@ -1,18 +1,14 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { PlayerDTO } from './player-dto';
-import { getPlayerCollectionName } from '../storage-config';
+import { type PlayerDTO } from './player-dto'
+import { getPlayerCollectionName } from '../storage-config'
 
 export async function playerListByGroup(group: string): Promise<PlayerDTO[]> {
-  try {
-    const collectionName = getPlayerCollectionName(group);
+  const collectionName = getPlayerCollectionName(group)
 
-    const storageValue = await AsyncStorage.getItem(collectionName);
+  const storageValue = await AsyncStorage.getItem(collectionName)
 
-    const players: PlayerDTO[] = storageValue ? JSON.parse(storageValue) : [];
+  if (storageValue === null || storageValue === '') return []
 
-    return players;
-  } catch (error) {
-    throw error;
-  }
+  return JSON.parse(storageValue)
 }

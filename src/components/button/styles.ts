@@ -1,10 +1,10 @@
-import { TouchableOpacity } from 'react-native';
-import styled, { css } from 'styled-components/native';
+import { TouchableOpacity } from 'react-native'
+import styled, { css } from 'styled-components/native'
 
-export type ButtonStyleType = 'primary' | 'secondary';
+export type ButtonStyleType = 'primary' | 'secondary'
 
 interface Props {
-  type: ButtonStyleType;
+  type: ButtonStyleType
 }
 
 export const Container = styled(TouchableOpacity)<Props>`
@@ -16,7 +16,7 @@ export const Container = styled(TouchableOpacity)<Props>`
   background-color: ${({ theme, type }) =>
     type === 'primary' ? theme.palette.green7 : theme.palette.redDark};
   border-radius: 6px;
-`;
+`
 
 export const Label = styled.Text`
   ${({ theme }) => css`
@@ -24,4 +24,4 @@ export const Label = styled.Text`
     font-family: ${theme.fontFamily.bold};
     color: ${theme.palette.white};
   `}
-`;
+`
