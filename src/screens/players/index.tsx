@@ -43,6 +43,7 @@ export default function Players(): ReactElement {
       }
 
       await playerAddByGroup({ name: newPlayerName, team }, group)
+      setNewPlayer('')
       await fetchPlayersByTeam()
     } catch (error) {
       if (error instanceof AppError) {
@@ -71,6 +72,7 @@ export default function Players(): ReactElement {
       <Form>
         <Input
           placeholder="Player name"
+          value={newPlayer}
           onChangeText={setNewPlayer}
           autoCorrect={false}
         />
