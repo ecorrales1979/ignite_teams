@@ -78,6 +78,8 @@ export default function Players(): ReactElement {
           onChangeText={setNewPlayer}
           autoCorrect={false}
           inputRef={newPlayerInputRef}
+          onSubmitEditing={handleAddPlayer}
+          returnKeyType="done"
         />
 
         <ButtonIcon icon="add" onPress={handleAddPlayer} />
