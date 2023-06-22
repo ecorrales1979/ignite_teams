@@ -1,5 +1,5 @@
-import { type ReactElement, useEffect, useState } from 'react'
-import { Alert, FlatList } from 'react-native'
+import { type ReactElement, useEffect, useState, useRef } from 'react'
+import { Alert, FlatList, TextInput } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 
 import { Container, Form, HeaderList, PlayersNumber } from './styles'
@@ -23,6 +23,7 @@ export default function Players(): ReactElement {
   const [players, setPlayers] = useState<PlayerDTO[]>([])
   const route = useRoute()
   const { group } = route.params as PlayersRouteParams
+  const newPlayerInputRef = useRef<TextInput>(null)
 
   const fetchPlayersByTeam = async (): Promise<void> => {
     try {
@@ -43,6 +44,7 @@ export default function Players(): ReactElement {
       }
 
       await playerAddByGroup({ name: newPlayerName, team }, group)
+      newPlayerInputRef.current?.blur()
       setNewPlayer('')
       await fetchPlayersByTeam()
     } catch (error) {
@@ -75,6 +77,7 @@ export default function Players(): ReactElement {
           value={newPlayer}
           onChangeText={setNewPlayer}
           autoCorrect={false}
+          inputRef={newPlayerInputRef}
         />
 
         <ButtonIcon icon="add" onPress={handleAddPlayer} />
