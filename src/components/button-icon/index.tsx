@@ -1,6 +1,6 @@
+import { type MaterialIcons } from '@expo/vector-icons'
 import { type ReactElement } from 'react'
 import { type TouchableOpacityProps } from 'react-native'
-import { type MaterialIcons } from '@expo/vector-icons'
 
 import { type ButtonIconStyleType, Container, Icon } from './styles'
 

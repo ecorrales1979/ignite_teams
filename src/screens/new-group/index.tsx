@@ -1,8 +1,9 @@
+import { useNavigation } from '@react-navigation/native'
 import { type ReactElement, useState } from 'react'
 import { Alert } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 
 import { Container, Content, Icon } from './styles'
+
 import { Button } from '@/components/button'
 import { Header } from '@/components/header'
 import { Highlight } from '@/components/highlight'

@@ -1,7 +1,7 @@
 import { type ReactElement } from 'react'
 
-import { Container, Icon, PlayerName } from './styles'
 import { ButtonIcon } from '../button-icon'
+import { Container, Icon, PlayerName } from './styles'
 
 interface Props {
   name: string

@@ -1,7 +1,8 @@
-import { type ReactElement } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import { type ReactElement } from 'react'
 
 import { BackButton, BackContainer, BackIcon, Container, Logo } from './styles'
+
 import logoImg from '@/assets/logo.png'
 
 interface Props {

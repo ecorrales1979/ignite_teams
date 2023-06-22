@@ -1,8 +1,9 @@
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { type ReactElement, useCallback, useState } from 'react'
 import { FlatList } from 'react-native'
-import { useNavigation, useFocusEffect } from '@react-navigation/native'
 
 import { Container } from './styles'
+
 import { Button } from '@/components/button'
 import { GroupCard } from '@/components/group-card'
 import { Header } from '@/components/header'

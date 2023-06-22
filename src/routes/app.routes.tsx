@@ -1,5 +1,5 @@
-import { type ReactElement } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { type ReactElement } from 'react'
 
 import Groups from '@/screens/groups'
 import NewGroup from '@/screens/new-group'

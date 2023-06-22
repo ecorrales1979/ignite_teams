@@ -1,8 +1,9 @@
+import { useRoute } from '@react-navigation/native'
 import { type ReactElement, useEffect, useState, useRef } from 'react'
 import { Alert, FlatList, type TextInput } from 'react-native'
-import { useRoute } from '@react-navigation/native'
 
 import { Container, Form, HeaderList, PlayersNumber } from './styles'
+
 import { type PlayersRouteParams } from '@/@types/navigation'
 import { Button } from '@/components/button'
 import { ButtonIcon } from '@/components/button-icon'
