@@ -16,6 +16,7 @@ import { PlayerCard } from '@/components/player-card'
 import { playerAddByGroup } from '@/storage/player/player-add-by-group'
 import { type PlayerDTO } from '@/storage/player/player-dto'
 import { playerListByGroupAndTeam } from '@/storage/player/player-list-by-group-and-team'
+import { playerRemoveByGroup } from '@/storage/player/player-remove-by-group'
 import { AppError } from '@/utils/app-error'
 
 export default function Players(): ReactElement {
@@ -59,6 +60,19 @@ export default function Players(): ReactElement {
         'There was an error trying to create the new player'
       )
       console.error(error)
+    }
+  }
+
+  const handleRemovePlayer = async (playerName: string): Promise<void> => {
+    try {
+      await playerRemoveByGroup(playerName, group)
+      await fetchPlayersByTeam()
+    } catch (error) {
+      console.error(error)
+      Alert.alert(
+        'Remove player',
+        'There was an error trying to remove selected player'
+      )
     }
   }
 
@@ -108,7 +122,10 @@ export default function Players(): ReactElement {
         data={players}
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
-          <PlayerCard name={item.name} onRemove={() => {}} />
+          <PlayerCard
+            name={item.name}
+            onRemove={() => handleRemovePlayer(item.name)}
+          />
         )}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={[
