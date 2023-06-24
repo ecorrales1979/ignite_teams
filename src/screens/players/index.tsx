@@ -34,7 +34,6 @@ export default function Players(): ReactElement {
       const playersByTeam = await playerListByGroupAndTeam(group, team)
       setPlayers(playersByTeam)
     } catch (error) {
-      console.log(error)
       Alert.alert('Players', 'There was an error loading the player list')
     }
   }
@@ -61,7 +60,6 @@ export default function Players(): ReactElement {
         'New player',
         'There was an error trying to create the new player'
       )
-      console.error(error)
     }
   }
 
@@ -70,7 +68,6 @@ export default function Players(): ReactElement {
       await playerRemoveByGroup(playerName, group)
       await fetchPlayersByTeam()
     } catch (error) {
-      console.error(error)
       Alert.alert(
         'Remove player',
         'There was an error trying to remove selected player'

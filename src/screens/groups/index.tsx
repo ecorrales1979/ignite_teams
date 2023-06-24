@@ -1,6 +1,6 @@
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { type ReactElement, useCallback, useState } from 'react'
-import { FlatList } from 'react-native'
+import { Alert, FlatList } from 'react-native'
 
 import { Container } from './styles'
 
@@ -29,7 +29,7 @@ export default function Groups(): ReactElement {
       const storedGroups = await groupList()
       setGroups(storedGroups)
     } catch (error) {
-      console.error(error)
+      Alert.alert('Groups', 'There was an error loading the groups')
     }
   }
 

@@ -34,7 +34,6 @@ export default function NewGroup(): ReactElement {
         'New group',
         'There was an error trying to create the new group'
       )
-      console.error(error)
     }
   }
 
