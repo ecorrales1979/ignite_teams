@@ -12,6 +12,7 @@ import { Header } from '@/components/header'
 import { Highlight } from '@/components/highlight'
 import { Input } from '@/components/input'
 import { ListEmpty } from '@/components/list-empty'
+import { Loading } from '@/components/loading'
 import { PlayerCard } from '@/components/player-card'
 import { groupDelete } from '@/storage/group/group-delete'
 import { playerAddByGroup } from '@/storage/player/player-add-by-group'
@@ -22,6 +23,7 @@ import { AppError } from '@/utils/app-error'
 
 export default function Players(): ReactElement {
   const [newPlayer, setNewPlayer] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const [team, setTeam] = useState('Team A')
   const [players, setPlayers] = useState<PlayerDTO[]>([])
   const route = useRoute()
@@ -31,8 +33,10 @@ export default function Players(): ReactElement {
 
   const fetchPlayersByTeam = async (): Promise<void> => {
     try {
+      setIsLoading(true)
       const playersByTeam = await playerListByGroupAndTeam(group, team)
       setPlayers(playersByTeam)
+      setIsLoading(false)
     } catch (error) {
       Alert.alert('Players', 'There was an error loading the player list')
     }
@@ -133,24 +137,30 @@ export default function Players(): ReactElement {
         <PlayersNumber>{players.length}</PlayersNumber>
       </HeaderList>
 
-      <FlatList
-        data={players}
-        keyExtractor={(item) => item.name}
-        renderItem={({ item }) => (
-          <PlayerCard
-            name={item.name}
-            onRemove={() => handleRemovePlayer(item.name)}
-          />
-        )}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
-          { paddingBottom: 100 },
-          players.length === 0 && { flex: 1 }
-        ]}
-        ListEmptyComponent={
-          <ListEmpty message="There are no players on this group yet" />
-        }
-      />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <FlatList
+          data={players}
+          keyExtractor={(item) => item.name}
+          renderItem={({ item }) => (
+            <PlayerCard
+              name={item.name}
+              onRemove={async () => {
+                await handleRemovePlayer(item.name)
+              }}
+            />
+          )}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={[
+            { paddingBottom: 100 },
+            players.length === 0 && { flex: 1 }
+          ]}
+          ListEmptyComponent={
+            <ListEmpty message="There are no players on this group yet" />
+          }
+        />
+      )}
 
       <Button
         label="Delete group"

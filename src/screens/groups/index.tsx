@@ -9,10 +9,12 @@ import { GroupCard } from '@/components/group-card'
 import { Header } from '@/components/header'
 import { Highlight } from '@/components/highlight'
 import { ListEmpty } from '@/components/list-empty'
+import { Loading } from '@/components/loading'
 import { groupList } from '@/storage/group/group-list'
 
 export default function Groups(): ReactElement {
   const [groups, setGroups] = useState<string[]>([])
+  const [isLoading, setIsLoading] = useState(false)
   const navigation = useNavigation()
 
   const handleNewGroup = (): void => {
@@ -26,8 +28,10 @@ export default function Groups(): ReactElement {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const fetchGroups = async () => {
     try {
+      setIsLoading(true)
       const storedGroups = await groupList()
       setGroups(storedGroups)
+      setIsLoading(false)
     } catch (error) {
       Alert.alert('Groups', 'There was an error loading the groups')
     }
@@ -45,23 +49,27 @@ export default function Groups(): ReactElement {
 
       <Highlight title="Groups" subtitle="play with your team" />
 
-      <FlatList
-        data={groups}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => (
-          <GroupCard
-            title={item}
-            onPress={() => {
-              handleOpenGroup(item)
-            }}
-          />
-        )}
-        contentContainerStyle={groups.length === 0 && { flex: 1 }}
-        showsVerticalScrollIndicator={false}
-        ListEmptyComponent={
-          <ListEmpty message="You don't have any group yet. Register your first one now!" />
-        }
-      />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <FlatList
+          data={groups}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => (
+            <GroupCard
+              title={item}
+              onPress={() => {
+                handleOpenGroup(item)
+              }}
+            />
+          )}
+          contentContainerStyle={groups.length === 0 && { flex: 1 }}
+          showsVerticalScrollIndicator={false}
+          ListEmptyComponent={
+            <ListEmpty message="You don't have any group yet. Register your first one now!" />
+          }
+        />
+      )}
 
       <Button label="Create new group" onPress={handleNewGroup} />
     </Container>
