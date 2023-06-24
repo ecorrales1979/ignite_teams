@@ -25,15 +25,12 @@ export default function NewGroup(): ReactElement {
       await groupCreate(groupName)
       navigation.navigate('players', { group: groupName })
     } catch (error) {
-      if (error instanceof AppError) {
-        Alert.alert('New group', error.message)
-        return
-      }
+      const message =
+        error instanceof AppError
+          ? error.message
+          : 'There was an error trying to create the new group'
 
-      Alert.alert(
-        'New group',
-        'There was an error trying to create the new group'
-      )
+      Alert.alert('New group', message)
     }
   }
 

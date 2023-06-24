@@ -51,15 +51,12 @@ export default function Players(): ReactElement {
       setNewPlayer('')
       await fetchPlayersByTeam()
     } catch (error) {
-      if (error instanceof AppError) {
-        Alert.alert('New player', error.message)
-        return
-      }
+      const message =
+        error instanceof AppError
+          ? error.message
+          : 'There was an error trying to create the new player'
 
-      Alert.alert(
-        'New player',
-        'There was an error trying to create the new player'
-      )
+      Alert.alert('New Player', message)
     }
   }
 
