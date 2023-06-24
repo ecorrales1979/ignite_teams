@@ -36,9 +36,10 @@ export default function Players(): ReactElement {
       setIsLoading(true)
       const playersByTeam = await playerListByGroupAndTeam(group, team)
       setPlayers(playersByTeam)
-      setIsLoading(false)
     } catch (error) {
       Alert.alert('Players', 'There was an error loading the player list')
+    } finally {
+      setIsLoading(false)
     }
   }
 

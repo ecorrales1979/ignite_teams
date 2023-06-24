@@ -31,9 +31,10 @@ export default function Groups(): ReactElement {
       setIsLoading(true)
       const storedGroups = await groupList()
       setGroups(storedGroups)
-      setIsLoading(false)
     } catch (error) {
       Alert.alert('Groups', 'There was an error loading the groups')
+    } finally {
+      setIsLoading(false)
     }
   }
 
