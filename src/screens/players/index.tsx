@@ -1,4 +1,4 @@
-import { useRoute } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { type ReactElement, useEffect, useState, useRef } from 'react'
 import { Alert, FlatList, type TextInput } from 'react-native'
 
@@ -13,6 +13,7 @@ import { Highlight } from '@/components/highlight'
 import { Input } from '@/components/input'
 import { ListEmpty } from '@/components/list-empty'
 import { PlayerCard } from '@/components/player-card'
+import { groupDelete } from '@/storage/group/group-delete'
 import { playerAddByGroup } from '@/storage/player/player-add-by-group'
 import { type PlayerDTO } from '@/storage/player/player-dto'
 import { playerListByGroupAndTeam } from '@/storage/player/player-list-by-group-and-team'
@@ -26,6 +27,7 @@ export default function Players(): ReactElement {
   const route = useRoute()
   const { group } = route.params as PlayersRouteParams
   const newPlayerInputRef = useRef<TextInput>(null)
+  const navigation = useNavigation()
 
   const fetchPlayersByTeam = async (): Promise<void> => {
     try {
@@ -74,6 +76,25 @@ export default function Players(): ReactElement {
         'There was an error trying to remove selected player'
       )
     }
+  }
+
+  const handleRemove = async (): Promise<void> => {
+    try {
+      await groupDelete(group)
+      navigation.navigate('groups')
+    } catch (error) {
+      Alert.alert(
+        'Delete group',
+        'There was an error trying to delete the group '
+      )
+    }
+  }
+
+  const handleGroupRemove = async (): Promise<void> => {
+    Alert.alert('Delete group', 'Do you want to remove this group?', [
+      { text: 'No', style: 'cancel' },
+      { text: 'Yes', onPress: handleRemove }
+    ])
   }
 
   useEffect(() => {
@@ -137,7 +158,11 @@ export default function Players(): ReactElement {
         }
       />
 
-      <Button label="Delete group" type="secondary" />
+      <Button
+        label="Delete group"
+        type="secondary"
+        onPress={handleGroupRemove}
+      />
     </Container>
   )
 }
